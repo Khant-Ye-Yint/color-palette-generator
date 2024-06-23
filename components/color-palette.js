@@ -67,9 +67,7 @@ const ColorPalette = () => {
 
   return (
     <>
-      {palette.length < 1 ? (
-        <ColorPaletteLoading />
-      ) : (
+      {palette ? (
         <div className="mt-10 overflow-hidden text-gray-800 rounded-lg dark:text-white bg-slate-100 dark:bg-neutral-900">
           <div className="grid grid-cols-5">
             {palette.map((color, index) => (
@@ -77,6 +75,8 @@ const ColorPalette = () => {
             ))}
           </div>
         </div>
+      ) : (
+        <ColorPaletteLoading />
       )}
 
       <div className="flex items-center justify-center mt-4 ">

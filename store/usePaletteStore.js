@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 const usePaletteStore = create((set) => ({
-  palette: [],
+  palette: null,
 
   updatePalette: (palette) => set(() => ({ palette: palette })),
 }));
