@@ -31,7 +31,7 @@ const ColorPalette = () => {
         }));
         updatePalette(initialPalette);
       });
-  }, []);
+  }, [updatePalette]);
 
   const formatRGB = (hex) => {
     const rgb = hexRgb(hex);
