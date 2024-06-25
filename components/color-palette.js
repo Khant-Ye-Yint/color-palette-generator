@@ -1,26 +1,13 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import ColorBlock from './color-block';
-import usePaletteStore from '@/store/usePaletteStore';
 import rgbHex from 'rgb-hex';
 import hexRgb from 'hex-rgb';
 import ColorPaletteLoading from './color-palette-loading';
 
 const ColorPalette = () => {
-  const palette = usePaletteStore((state) => state.palette);
-  const updatePalette = usePaletteStore((state) => state.updatePalette);
-
-  const fetchApi = async () => {
-    try {
-      const reqData = await fetch('http://colormind.io/api/');
-      const resData = await reqData.data;
-      console.log(resData);
-    } catch {
-      return null;
-    }
-  };
-  fetchApi();
+  const [palette, setPalette] = useState(null);
 
   useEffect(() => {
     fetch(
@@ -40,9 +27,10 @@ const ColorPalette = () => {
           hexCode: `#${rgbHex(color[0], color[1], color[2])}`,
           isLocked: false,
         }));
-        updatePalette(initialPalette);
+        setPalette(initialPalette);
+        console.log(initialPalette);
       });
-  }, [updatePalette]);
+  }, [setPalette]);
 
   const formatRGB = (hex) => {
     const rgb = hexRgb(hex);
@@ -72,7 +60,7 @@ const ColorPalette = () => {
           hexCode: `#${rgbHex(color[0], color[1], color[2])}`,
           isLocked: palette[index].isLocked,
         }));
-        updatePalette(initialPalette);
+        setPalette(initialPalette);
       });
   };
 
@@ -82,7 +70,12 @@ const ColorPalette = () => {
         <div className="mt-10 overflow-hidden text-gray-800 rounded-lg dark:text-white bg-slate-100 dark:bg-neutral-900">
           <div className="grid grid-cols-5">
             {palette.map((color, index) => (
-              <ColorBlock key={index} index={index} />
+              <ColorBlock
+                key={index}
+                index={index}
+                palette={palette}
+                setPalette={setPalette}
+              />
             ))}
           </div>
         </div>

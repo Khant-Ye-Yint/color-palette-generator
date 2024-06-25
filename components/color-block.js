@@ -1,19 +1,15 @@
 'use client';
 import { LockOpen, Lock, Brush } from 'lucide-react';
-import usePaletteStore from '@/store/usePaletteStore';
 import { HexColorPicker } from 'react-colorful';
 import { useState } from 'react';
 
-const ColorBlock = ({ index }) => {
+const ColorBlock = ({ index, palette, setPalette }) => {
   const [open, setOpen] = useState(false);
-
-  const palette = usePaletteStore((state) => state.palette);
-  const updatePalette = usePaletteStore((state) => state.updatePalette);
 
   const { hexCode, isLocked } = palette[index];
 
   const toggleLock = () => {
-    updatePalette(
+    setPalette(
       palette.map((color, colorIndex) =>
         colorIndex === index
           ? {
@@ -26,7 +22,7 @@ const ColorBlock = ({ index }) => {
   };
 
   const updateColor = (updatedColor) => {
-    updatePalette(
+    setPalette(
       palette.map((color, colorIndex) =>
         colorIndex === index
           ? {

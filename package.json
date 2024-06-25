@@ -16,8 +16,7 @@
     "react": "^18",
     "react-colorful": "^5.6.1",
     "react-dom": "^18",
-    "rgb-hex": "^4.1.0",
-    "zustand": "^4.5.2"
+    "rgb-hex": "^4.1.0"
   },
   "devDependencies": {
     "eslint": "^8",
