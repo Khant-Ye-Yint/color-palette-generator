@@ -78,17 +78,17 @@ const ColorPalette = () => {
 
   return (
     <>
-      {/* {palette ? ( */}
-      <div className="mt-10 overflow-hidden text-gray-800 rounded-lg dark:text-white bg-slate-100 dark:bg-neutral-900">
-        <div className="grid grid-cols-5">
-          {palette.map((color, index) => (
-            <ColorBlock key={index} index={index} />
-          ))}
+      {palette ? (
+        <div className="mt-10 overflow-hidden text-gray-800 rounded-lg dark:text-white bg-slate-100 dark:bg-neutral-900">
+          <div className="grid grid-cols-5">
+            {palette.map((color, index) => (
+              <ColorBlock key={index} index={index} />
+            ))}
+          </div>
         </div>
-      </div>
-      {/* // ) : (
-      //   <ColorPaletteLoading />
-      // )} */}
+      ) : (
+        <ColorPaletteLoading />
+      )}
 
       <div className="flex items-center justify-center mt-4 ">
         <button onClick={generateNewPalette} className="px-2 py-1 btn">
