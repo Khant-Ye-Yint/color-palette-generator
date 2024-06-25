@@ -1,7 +1,13 @@
 import { create } from 'zustand';
 
 const usePaletteStore = create((set) => ({
-  palette: null,
+  palette: [
+    { hexCode: '#018471', isLocked: false },
+    { hexCode: '#018471', isLocked: false },
+    { hexCode: '#018471', isLocked: false },
+    { hexCode: '#018471', isLocked: false },
+    { hexCode: '#018471', isLocked: false },
+  ],
 
   updatePalette: (palette) => set(() => ({ palette: palette })),
 }));

@@ -11,6 +11,17 @@ const ColorPalette = () => {
   const palette = usePaletteStore((state) => state.palette);
   const updatePalette = usePaletteStore((state) => state.updatePalette);
 
+  const fetchApi = async () => {
+    try {
+      const reqData = await fetch('http://colormind.io/api/');
+      const resData = await reqData.data;
+      console.log(resData);
+    } catch {
+      return null;
+    }
+  };
+  fetchApi();
+
   useEffect(() => {
     fetch(
       'http://colormind.io/api/',
@@ -67,17 +78,17 @@ const ColorPalette = () => {
 
   return (
     <>
-      {palette ? (
-        <div className="mt-10 overflow-hidden text-gray-800 rounded-lg dark:text-white bg-slate-100 dark:bg-neutral-900">
-          <div className="grid grid-cols-5">
-            {palette.map((color, index) => (
-              <ColorBlock key={index} index={index} />
-            ))}
-          </div>
+      {/* {palette ? ( */}
+      <div className="mt-10 overflow-hidden text-gray-800 rounded-lg dark:text-white bg-slate-100 dark:bg-neutral-900">
+        <div className="grid grid-cols-5">
+          {palette.map((color, index) => (
+            <ColorBlock key={index} index={index} />
+          ))}
         </div>
-      ) : (
-        <ColorPaletteLoading />
-      )}
+      </div>
+      {/* // ) : (
+      //   <ColorPaletteLoading />
+      // )} */}
 
       <div className="flex items-center justify-center mt-4 ">
         <button onClick={generateNewPalette} className="px-2 py-1 btn">
