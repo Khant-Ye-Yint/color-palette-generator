@@ -28,7 +28,6 @@ const ColorPalette = () => {
           isLocked: false,
         }));
         setPalette(initialPalette);
-        console.log(initialPalette);
       });
   }, [setPalette]);
 
